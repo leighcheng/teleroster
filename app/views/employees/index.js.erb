@@ -1,0 +1,7 @@
+
+
+  <% if request.user_agent.include?("iPhone") %>
+  	$("#iphone").html("<%= escape_javascript(render("employeesiphone")) %>"); 
+  <% else %>
+  	$("#employees").html("<%= escape_javascript(render("employees")) %>");
+  <%end%>

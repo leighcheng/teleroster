@@ -1,0 +1,31 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table class="pretty">
+  <tr>
+    <th><%= sortable "FirstName" %></th>
+    <th><%= sortable "LastName" %></th>
+    <th><%= sortable "PhoneExtension" %></th>
+    <th><%= sortable "DeskNumber" %></th>
+  </tr>
+  <% for employee in @employees %>
+    <tr>
+      <td><%= employee.FirstName %></td>
+      <td><%= employee.LastName %></td>
+      <td id="extension">
+      	<% if employee.Cell.nil? %>
+      	  <%= employee.PhoneExtension %> 
+      	<% elsif employee.Cell.size > 4 %>
+      	  <%= employee.PhoneExtension + " Cell: " %>
+      	  <br>
+      	  <a href= <%= "&#34;tel:#{employee.Cell}&#34;".html_safe %>><%= employee.Cell %> </a>
+      	<%else%>  
+      	  <%= employee.PhoneExtension %>       	   	
+      	<% end %>
+  	  </td>
+      <td><%= employee.DeskNumber %></td>      
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @employees %>

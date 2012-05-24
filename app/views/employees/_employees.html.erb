@@ -1,0 +1,31 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<b>Count: <%= @searchcounts %></b><br><br>
+
+<table class="pretty">
+  <tr>
+    <th><%= sortable "FirstName" %></th>
+    <th><%= sortable "LastName" %></th>
+    <th><%= sortable "PhoneExtension" %></th>
+    <th><%= sortable "DeskNumber" %></th>
+    <th><%= sortable "Department" %></th>   
+    <th><%= sortable "Title" %></th>
+    <th><%= sortable "SupervisorName" %></th>       
+    <th><%= sortable "Cell" %></th>        
+  </tr>
+  <% for employee in @employees %>
+    <tr>
+      <td><%= employee.FirstName %></td>
+      <td><%= employee.LastName %></td>
+      <td><%= employee.PhoneExtension %></td>
+      <td><%= employee.DeskNumber %></td>
+      <td><%= employee.Department %></td>    
+      <td><%= employee.Title %></td>
+      <td><%= employee.SupervisorName %></td>             
+      <td><%= employee.Cell %></td>           
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @employees %>
