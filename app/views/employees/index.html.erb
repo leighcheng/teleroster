@@ -15,9 +15,9 @@
 				event.keyCode == 36 || 						
 				event.keyCode == 37 || 
 				event.keyCode == 39 ||
-				event.keyCode == 46 ||						
-				event.keyCode == 189 ||						
-				event.keyCode == 109 ||
+				event.keyCode == 46 ||		
+				event.keyCode == 109 ||	
+				event.keyCode == 189 ||																	
 				event.keyCode == 222				
 			) 
 			{
@@ -28,19 +28,38 @@
 			}
 		});
 	});
-</script>	            
+</script>	
+
+<%= form_tag employees_path, :method => 'get', :id => "employees_search" do %>
+
+  <% if request.user_agent.include?("iPhone") %>
+  <div id="box">
+    <div id="inputfield"><b id="searchlable">Search</b><%= text_field_tag :search, params[:search] %></div><b>
+  </div>  
+    <div id="iphone"><%= render 'employeesiphone' %></div>  
+
+  <% else %>
+    <p>
+      <b>Search</b> <%= text_field_tag :search, params[:search] %> 
+    </p>  
+    <div id="employees"><%= render 'employees' %></div>  
+  <%end%>
+  
+
+<% end %>            
 
 
 <% if not request.user_agent.include?("iPhone") %>
 
 	<script type="text/javascript">
 		var chart1;
-		var chart2;			
+		var chart2;	
+		var chart3;			
 		$(document).ready(function() {
 			chart1 = new Highcharts.Chart({
 				chart: {
 					renderTo: 'chart_anniversary', 
-					defaultSeriesType: 'column'				
+					defaultSeriesType: 'column'							
 				},
 				title: {
 					text: 'ODS Employee Seniority Chart'
@@ -60,7 +79,7 @@
 					}							
 				},
 				yAxis: {
-	                max: 201,		                        					
+	                max: 180,		                        					
 					title: {
 						text: 'Numbers of Employees'
 					},
@@ -77,7 +96,7 @@
 				},
 				plotOptions: {
 					column: {
-						pointStart: 1975,
+						pointStart: 1976,
 						marker: {
 							enabled: false,
 							symbol: 'circle',
@@ -91,7 +110,7 @@
 					}
 				},
 				series: [{
-					name: 'Anniversary Year',
+					name: 'Anniversary Year',				
 					data:  <%= data_anniversary %>
 				}]
 			});
@@ -129,7 +148,43 @@
 					type: 'pie',
 					data: <%= data_location.inspect.html_safe %>
 				}]
+			});	
+			
+			chart3 = new Highcharts.Chart({
+				chart: {
+					renderTo: 'chart_department',
+					plotBackgroundColor: null,
+					plotBorderWidth: null,
+					plotShadow: false
+				},
+				title: {
+					text: 'ODS Employee by Department'
+				},					
+				tooltip: {
+					formatter: function() {
+						return '<b>'+ this.point.name +'</b>: '+ this.y;
+					}
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: true,
+							color: '#000000',
+							connectorColor: '#000000',
+							formatter: function() {
+								return '<b>'+ this.point.name +'</b>: '+ this.y;
+							}
+						}
+					}
+				},
+			    series: [{
+					type: 'pie',
+					data: <%= data_department.inspect.html_safe %>
+				}]
 			});				
+						
 			
 	
 		});
@@ -140,25 +195,7 @@
 	
 	</script>		
 
-	<div id="chart_anniversary" ></div>
-	<div id="chart_location" ></div>
 <%end%>
 
 
 
-<%= form_tag employees_path, :method => 'get', :id => "employees_search" do %>
-
-  <% if request.user_agent.include?("iPhone") %>
-  <div id="box">
-    <div id="inputfield"><b id="searchlable">Search</b><%= text_field_tag :search, params[:search] %></div><b>
-  </div>  
-    <div id="iphone"><%= render 'employeesiphone' %></div>  
-
-  <% else %>
-    <p>
-      <b>Search</b> <%= text_field_tag :search, params[:search] %> 
-    </p>  
-    <div id="employees"><%= render 'employees' %></div>  
-  <%end%>
-
-<% end %>

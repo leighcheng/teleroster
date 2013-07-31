@@ -23,7 +23,7 @@ module LayoutHelper
   	def data_anniversary
 		a = []
 		n = 0
-		(1975..2012).each do |y|
+		(1976..Time.new.year).each do |y|
 		  n = Employee.where('year(Anniversary) = ?', y ).size
 		  a.push(n)	
 		end
@@ -35,6 +35,12 @@ module LayoutHelper
 	  a = Employee.select("Location").where('Location is not null').group("Location").count.delete_if {|key, value| key == "ODS" }.to_a.sort
 	  return a
 	end   
+	
+	def data_department	
+	  a = []	
+	  a = Employee.select("Department").where('Department is not null').group("Department").count.delete_if {|key, value| key == "ODS" }.to_a.sort
+	  return a
+	end  
 	
 	def total_employees
 	  a = Employee.where('firstname is not null').count.to_s

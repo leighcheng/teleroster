@@ -3,11 +3,13 @@
 
 <b>Count: <%= @searchcounts %></b><br><br>
 
+
 <table class="pretty">
   <tr>
     <th><%= sortable "FirstName" %></th>
     <th><%= sortable "LastName" %></th>
-    <th><%= sortable "PhoneExtension" %></th>
+    <th><%= sortable "Extension" %></th>
+    <th><%= sortable "BusinessPhone" %></th>
     <th><%= sortable "DeskNumber" %></th>
     <th><%= sortable "Department" %></th>   
     <th><%= sortable "Title" %></th>
@@ -19,13 +21,27 @@
       <td><%= employee.FirstName %></td>
       <td><%= employee.LastName %></td>
       <td><%= employee.PhoneExtension %></td>
+      <td>
+      	<% if "503-765-3475-503-228-6554".include?(employee.BusinessPhone) %>
+      	  <%= "" %>
+      	<% else %>
+      	  <%= employee.BusinessPhone %>
+      	<% end %>
+  	  </td>
       <td><%= employee.DeskNumber %></td>
       <td><%= employee.Department %></td>    
       <td><%= employee.Title %></td>
-      <td><%= employee.SupervisorName %></td>             
+      <td><%= employee.SupervisorFirstName + ' ' + employee.SupervisorLastName %></td>             
       <td><%= employee.Cell %></td>           
     </tr>
   <% end %>
 </table>
 
 <%= paginate @employees %>
+
+  
+<table class="pretty">
+	<div id="chart_department" ></div>
+    <div id="chart_anniversary" ></div>
+	<div id="chart_location" ></div>
+</table>
