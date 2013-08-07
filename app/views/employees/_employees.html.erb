@@ -14,7 +14,8 @@
     <th><%= sortable "Department" %></th>   
     <th><%= sortable "Title" %></th>
     <th><%= sortable "SupervisorName" %></th>       
-    <th><%= sortable "Cell" %></th>        
+    <th><%= sortable "Cell" %></th>     
+        <th><%= "Picture" %></th>      
   </tr>
   <% for employee in @employees %>
     <tr>
@@ -32,7 +33,8 @@
       <td><%= employee.Department %></td>    
       <td><%= employee.Title %></td>
       <td><%= employee.SupervisorFirstName + ' ' + employee.SupervisorLastName %></td>             
-      <td><%= employee.Cell %></td>           
+      <td><%= employee.Cell %></td>     
+      <td><%= ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(employee.Picture)).html_safe %></td>          
     </tr>
   <% end %>
 </table>
