@@ -34,7 +34,7 @@
       <td><%= employee.Title %></td>
       <td><%= employee.SupervisorFirstName + ' ' + employee.SupervisorLastName %></td>             
       <td><%= employee.Cell %></td>     
-      <td><%= ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(employee.Picture)).html_safe %></td>          
+      <td><%= ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(employee.Picture)).html_safe if !employee.Picture.nil?  %></td>          
     </tr>
   <% end %>
 </table>
