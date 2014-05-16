@@ -17,5 +17,4 @@ $ ->
     else if event.keyCode in [8,32,35,36,37,39,46,109,189]
     else
       event.preventDefault()
-
-
+      

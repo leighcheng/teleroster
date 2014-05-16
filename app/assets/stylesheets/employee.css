@@ -137,3 +137,13 @@ input:focus {
 	-webkit-box-shadow: 0 0 6px rgba(81, 203, 238, 1);
 	-moz-box-shadow: 0 0 6px rgba(81, 203, 238, 1);
 }
+
+tr:nth-child(odd) {
+    background-color: #E8E8E8;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+    color: black;
+}

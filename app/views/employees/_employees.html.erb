@@ -1,8 +1,10 @@
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
 
-<b>Count: <%= @searchcounts %></b><br><br>
 
+<p><b>Count: <%= @searchcounts %></b></p>
+
+<p><b style="float:right"><%= paginate @employees %></b></p>
 
 <table class="pretty">
   <tr>
@@ -39,4 +41,4 @@
   <% end %>
 </table>
 
-<%= paginate @employees %>
+<b><%= paginate @employees %></b>
