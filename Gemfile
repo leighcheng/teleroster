@@ -5,9 +5,9 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'tiny_tds'
+#gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
-#gem 'ruby-odbc'
+gem 'ruby-odbc'
 
 gem 'nifty-generators'
 gem 'kaminari'

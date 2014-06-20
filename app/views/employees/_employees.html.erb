@@ -17,26 +17,18 @@
     <th><%= sortable "Title" %></th>
     <th><%= sortable "SupervisorName" %></th>       
     <th><%= sortable "Cell" %></th>     
-        <th><%= "Picture" %></th>      
   </tr>
   <% for employee in @employees %>
     <tr>
       <td><%= employee.FirstName %></td>
       <td><%= employee.LastName %></td>
       <td><%= employee.PhoneExtension %></td>
-      <td>
-      	<% if "503-765-3475-503-228-6554".include?(employee.BusinessPhone) %>
-      	  <%= "" %>
-      	<% else %>
-      	  <%= employee.BusinessPhone %>
-      	<% end %>
-  	  </td>
+      <td><%= employee.BusinessPhone %></td>
       <td><%= employee.DeskNumber %></td>
       <td><%= employee.Department %></td>    
       <td><%= employee.Title %></td>
-      <td><%= employee.SupervisorFirstName + ' ' + employee.SupervisorLastName %></td>             
+      <td><%= employee.SupervisorName %></td>             
       <td><%= employee.Cell %></td>     
-      <td><%= ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(employee.Picture)).html_safe if !employee.Picture.nil?  %></td>          
     </tr>
   <% end %>
 </table>
