@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-	set_table_name "MODAEmployee"
+	self.table_name = "MODAEmployee"
 	attr_accessible :firstname, :lastname, :phoneextension,:businessphone, :DeskNumber
 	
 	def self.search(search)
